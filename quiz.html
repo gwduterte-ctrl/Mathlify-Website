@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <title>Mathlify_Quizzes</title>
+</head>
+<body>
+    <header>
+        <h1>Mathli<span>.</span>fy</h1>
+        <div class="nav-links">
+            <a href="homepage.html">Homepage</a>
+            <a href="lessons.html">Lessons</a>
+            <a href="quiz.html">Quizzes</a>
+            <a href="about.html">About</a>
+            <a href="contacts.html">Contacts</a>
+        </div>
+    </header>
+
+    <div class="dashboard-container">
+        <div class="main-content">
+            <div class="section-title">🧠 Interactive Quiz Studio</div>
+            
+            <div style="display: flex; gap: 1rem; margin-bottom: 1rem; flex-wrap: wrap;">
+                <select id="quizTheme" class="quiz-theme-selector" onchange="changeQuizTheme()">
+                    <option value="default">🎨 Default Theme</option>
+                    <option value="dark">🌙 Dark Theme</option>
+                    <option value="colorful">🌈 Colorful Theme</option>
+                </select>
+                <button class="btn btn-primary" onclick="startTimer()">⏱️ Start Timer (60s)</button>
+                <button class="btn btn-outline" onclick="resetTimer()">🔄 Reset Timer</button>
+            </div>
+            
+            <div id="timerDisplay" class="timer-display">⏱️ Time: 00:00</div>
+            
+            <div class="quiz-area" id="quizBlock">
+                <div id="quizContainer"></div>
+                <button id="submitQuizBtn" class="btn btn-primary" style="margin-top: 1rem;">✅ Submit Answers</button>
+                <div id="quizGlobalFeedback" style="margin-top: 0.8rem;"></div>
+            </div>
+            
+            <!-- Formula Bank Section -->
+            <div class="formula-bank" id="formulaBank">
+                <h3>📚 My Formula Bank</h3>
+                <div id="formulaList"></div>
+                <div style="margin-top: 1rem;">
+                    <input type="text" id="newFormulaName" placeholder="Formula Name (e.g., Permutation)" style="width: 100%; padding: 0.5rem; margin-bottom: 0.5rem; border-radius: 12px; border: 1px solid #ddd;">
+                    <textarea id="newFormulaContent" rows="3" placeholder="Formula content / LaTeX / description" style="width: 100%; padding: 0.5rem; border-radius: 12px; border: 1px solid #ddd;"></textarea>
+                    <button class="btn btn-primary" style="margin-top: 0.5rem;" onclick="addFormula()">➕ Add Formula</button>
+                </div>
+            </div>
+            
+            <!-- Problem Bank Section -->
+            <div class="formula-bank" style="margin-top: 1rem;" id="problemBank">
+                <h3>📝 My Problem Set</h3>
+                <div id="problemList"></div>
+                <div style="margin-top: 1rem;">
+                    <input type="text" id="newProblemQuestion" placeholder="Problem question" style="width: 100%; padding: 0.5rem; margin-bottom: 0.5rem; border-radius: 12px; border: 1px solid #ddd;">
+                    <input type="text" id="newProblemAnswer" placeholder="Answer / solution" style="width: 100%; padding: 0.5rem; margin-bottom: 0.5rem; border-radius: 12px; border: 1px solid #ddd;">
+                    <button class="btn btn-primary" onclick="addProblem()">➕ Add Problem</button>
+                    <button class="btn btn-outline print-btn" onclick="printProblemSet()">🖨️ Print Problem Set</button>
+                </div>
+            </div>
+        </div>
+        
+        <aside class="sidebar">
+            <div class="reminder-card">
+                <div style="font-weight: 700;">📊 Quiz Rules</div>
+                <div class="reminder-item">10 multiple choice questions</div>
+                <div class="reminder-item">60-second timer optional</div>
+                <div class="reminder-item">Score shown after submission</div>
+                <div class="reminder-item">Review explanations to learn</div>
+            </div>
+            <div class="teacher-info">
+                <div style="font-weight: 600;">💡 Pro Tip</div>
+                <div>Add your own formulas and practice problems to the banks above, then print them for offline study!</div>
+            </div>
+        </aside>
+    </div>
+    
+    <footer>
+        <p>© Mathlify — Test Your Probability Knowledge</p>
+    </footer>
+
+    <button class="theme-toggle" onclick="toggleTheme()">🌙 Dark Mode</button>
+
+    <script>
+        // 50+ practice problems (10 shown in quiz, rest in problem bank)
+        const quizQuestions = [
+            { text: "1️⃣ A 4-digit PIN with digits 0-9 (repetition allowed). How many possible PINs?", options: ["10⁴ = 10000", "4! = 24", "10×9×8×7 = 5040", "10⁴ - 10 = 9990"], correct: 0, explanation: "Product rule: 10 choices × 10 × 10 × 10 = 10,000." },
+            { text: "2️⃣ How many ways to arrange 3 distinct books from 7 on a shelf?", options: ["C(7,3) = 35", "7³ = 343", "P(7,3) = 210", "7! = 5040"], correct: 2, explanation: "Permutation: 7×6×5 = 210." },
+            { text: "3️⃣ Total server states = 2¹⁰ = 1024. No failure = 1 state. At least one failure?", options: ["1023", "1024", "512", "1024 - 10"], correct: 0, explanation: "Complement: 1024 − 1 = 1023." },
+            { text: "4️⃣ Choose 2 projects from 5 proposals (order doesn't matter). How many?", options: ["20", "10", "5", "15"], correct: 1, explanation: "C(5,2) = 10 ways." },
+            { text: "5️⃣ Distinct arrangements of 'MATH' (4 distinct letters)?", options: ["24", "12", "16", "4!"], correct: 0, explanation: "4! = 24 arrangements." },
+            { text: "6️⃣ How many 3-letter codes from 26 letters (repetition allowed)?", options: ["26×25×24", "26³", "3²⁶", "26×3"], correct: 1, explanation: "Product rule: 26×26×26 = 26³" },
+            { text: "7️⃣ P(8,2) equals?", options: ["56", "64", "28", "16"], correct: 0, explanation: "8×7 = 56" },
+            { text: "8️⃣ C(8,2) equals?", options: ["56", "28", "16", "8"], correct: 1, explanation: "8!/(2!6!) = 28" },
+            { text: "9️⃣ How many ways to select a committee of 3 from 10 people?", options: ["720", "120", "1000", "30"], correct: 1, explanation: "C(10,3) = 120" },
+            { text: "🔟 (x+y)³ expands to?", options: ["x³+3x²y+3xy²+y³", "x³+y³", "x³+2x²y+2xy²+y³", "x³+3x²y+2xy²+y³"], correct: 0, explanation: "Binomial theorem gives coefficients 1,3,3,1" }
+        ];
+        
+        let userAnswers = new Array(10).fill(null);
+        let submitted = false;
+        let timerInterval = null;
+        let timeSeconds = 0;
+        let timerActive = false;
+        
+        // Load saved formulas and problems
+        let formulas = JSON.parse(localStorage.getItem('mathlify_formulas')) || [];
+        let problems = JSON.parse(localStorage.getItem('mathlify_problems')) || [];
+        
+        function renderQuiz() {
+            const container = document.getElementById('quizContainer');
+            let html = '';
+            quizQuestions.forEach((q, idx) => {
+                html += `<div class="quiz-question" style="margin-top:1.2rem;">${q.text}</div><div class="quiz-options" data-qidx="${idx}">`;
+                q.options.forEach((opt, optIdx) => {
+                    html += `<label class="quiz-option"><input type="radio" name="q${idx}" value="${optIdx}" ${userAnswers[idx] === optIdx ? 'checked' : ''} ${submitted ? 'disabled' : ''}><span>${opt}</span></label>`;
+                });
+                html += `</div>`;
+                if (submitted && userAnswers[idx] !== null) {
+                    const isCorrect = (userAnswers[idx] === q.correct);
+                    html += `<div class="quiz-feedback ${isCorrect ? 'correct-feedback' : 'wrong-feedback'}">${isCorrect ? '✅ ' + q.explanation : '❌ ' + q.explanation}</div>`;
+                } else if (submitted) {
+                    html += `<div class="quiz-feedback wrong-feedback">⚠️ Not answered. Correct: ${q.options[q.correct]}</div>`;
+                }
+            });
+            container.innerHTML = html;
+            if (!submitted) attachListeners();
+        }
+        
+        function attachListeners() {
+            for (let i = 0; i < 10; i++) {
+                document.querySelectorAll(`input[name="q${i}"]`).forEach(radio => {
+                    radio.addEventListener('change', (e) => { if (!submitted) userAnswers[i] = parseInt(e.target.value); });
+                });
+            }
+        }
+        
+        function submitQuiz() {
+            if (submitted) return;
+            if (timerActive) stopTimer();
+            let allAnswered = userAnswers.every(a => a !== null);
+            if (!allAnswered) { document.getElementById('quizGlobalFeedback').innerHTML = '<span style="color:#b13e3e;">❗ Answer all 10 questions first.</span>'; return; }
+            submitted = true;
+            let correct = userAnswers.filter((a,i) => a === quizQuestions[i].correct).length;
+            renderQuiz();
+            document.getElementById('quizGlobalFeedback').innerHTML = `<div style="background:#e0e8ff; padding:0.8rem; border-radius:20px;">🎉 Score: ${correct}/10. ${correct === 10 ? 'Perfect! Master of counting!' : 'Review explanations above.'}</div>`;
+            document.getElementById('submitQuizBtn').disabled = true;
+        }
+        
+        function startTimer() {
+            if (timerActive) return;
+            timerActive = true;
+            timeSeconds = 60;
+            updateTimerDisplay();
+            timerInterval = setInterval(() => {
+                if (timeSeconds > 0) {
+                    timeSeconds--;
+                    updateTimerDisplay();
+                } else {
+                    stopTimer();
+                    alert('⏰ Time\'s up! Submit your answers.');
+                    if (!submitted) submitQuiz();
+                }
+            }, 1000);
+        }
+        
+        function stopTimer() {
+            if (timerInterval) {
+                clearInterval(timerInterval);
+                timerInterval = null;
+            }
+            timerActive = false;
+        }
+        
+        function resetTimer() {
+            stopTimer();
+            timeSeconds = 0;
+            updateTimerDisplay();
+            timerActive = false;
+        }
+        
+        function updateTimerDisplay() {
+            const minutes = Math.floor(timeSeconds / 60);
+            const seconds = timeSeconds % 60;
+            document.getElementById('timerDisplay').innerHTML = `⏱️ Time: ${minutes.toString().padStart(2,'0')}:${seconds.toString().padStart(2,'0')}`;
+        }
+        
+        function changeQuizTheme() {
+            const theme = document.getElementById('quizTheme').value;
+            const quizArea = document.querySelector('.quiz-area');
+            if (theme === 'dark') {
+                quizArea.style.background = '#1e1e2e';
+                quizArea.style.color = '#eee';
+            } else if (theme === 'colorful') {
+                quizArea.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+                quizArea.style.color = 'white';
+            } else {
+                quizArea.style.background = '#fefaf5';
+                quizArea.style.color = '#1e2a3e';
+            }
+        }
+        
+        function renderFormulaBank() {
+            const container = document.getElementById('formulaList');
+            if (!container) return;
+            if (formulas.length === 0) {
+                container.innerHTML = '<p style="color: #999;">No formulas yet. Add your first formula above!</p>';
+                return;
+            }
+            container.innerHTML = formulas.map((f, idx) => `
+                <div class="formula-item">
+                    <strong>${escapeHtml(f.name)}</strong>
+                    <p style="margin-top: 0.5rem;">${escapeHtml(f.content)}</p>
+                    <button class="btn btn-outline" style="margin-top: 0.5rem;" onclick="deleteFormula(${idx})">🗑️ Delete</button>
+                </div>
+            `).join('');
+        }
+        
+        function renderProblemBank() {
+            const container = document.getElementById('problemList');
+            if (!container) return;
+            if (problems.length === 0) {
+                container.innerHTML = '<p style="color: #999;">No problems yet. Add your first problem above!</p>';
+                return;
+            }
+            container.innerHTML = problems.map((p, idx) => `
+                <div class="problem-item">
+                    <strong>📌 Q${idx+1}:</strong> ${escapeHtml(p.question)}
+                    <p style="margin-top: 0.5rem; color: #6c4fd7;"><strong>Answer:</strong> ${escapeHtml(p.answer)}</p>
+                    <button class="btn btn-outline" style="margin-top: 0.5rem;" onclick="deleteProblem(${idx})">🗑️ Delete</button>
+                </div>
+            `).join('');
+        }
+        
+        function addFormula() {
+            const name = document.getElementById('newFormulaName').value.trim();
+            const content = document.getElementById('newFormulaContent').value.trim();
+            if (!name || !content) {
+                alert('Please enter both formula name and content.');
+                return;
+            }
+            formulas.push({ name, content });
+            localStorage.setItem('mathlify_formulas', JSON.stringify(formulas));
+            document.getElementById('newFormulaName').value = '';
+            document.getElementById('newFormulaContent').value = '';
+            renderFormulaBank();
+        }
+        
+        function addProblem() {
+            const question = document.getElementById('newProblemQuestion').value.trim();
+            const answer = document.getElementById('newProblemAnswer').value.trim();
+            if (!question || !answer) {
+                alert('Please enter both problem question and answer.');
+                return;
+            }
+            problems.push({ question, answer });
+            localStorage.setItem('mathlify_problems', JSON.stringify(problems));
+            document.getElementById('newProblemQuestion').value = '';
+            document.getElementById('newProblemAnswer').value = '';
+            renderProblemBank();
+        }
+        
+        function deleteFormula(idx) {
+            formulas.splice(idx, 1);
+            localStorage.setItem('mathlify_formulas', JSON.stringify(formulas));
+            renderFormulaBank();
+        }
+        
+        function deleteProblem(idx) {
+            problems.splice(idx, 1);
+            localStorage.setItem('mathlify_problems', JSON.stringify(problems));
+            renderProblemBank();
+        }
+        
+        function printProblemSet() {
+            if (problems.length === 0) {
+                alert('No problems to print. Add some problems first!');
+                return;
+            }
+            const printWindow = window.open('', '_blank');
+            printWindow.document.write(`
+                <html>
+                <head>
+                    <title>My Mathlify Problem Set</title>
+                    <style>
+                        body { font-family: Arial, sans-serif; padding: 2rem; }
+                        h1 { color: #6c4fd7; }
+                        .problem { margin-bottom: 2rem; padding: 1rem; border-bottom: 1px solid #ddd; }
+                        .answer { margin-top: 1rem; padding: 0.5rem; background: #f5f5f5; border-radius: 8px; }
+                        @media print {
+                            .no-print { display: none; }
+                            .answer { background: #f9f9f9; }
+                        }
+                    </style>
+                </head>
+                <body>
+                    <h1>📚 Mathlify Practice Problem Set</h1>
+                    <p>Generated on: ${new Date().toLocaleDateString()}</p>
+                    <hr>
+                    ${problems.map((p, idx) => `
+                        <div class="problem">
+                            <h3>Problem ${idx+1}:</h3>
+                            <p>${escapeHtml(p.question)}</p>
+                            <div class="answer">
+                                <strong>Answer/Solution:</strong><br>
+                                ${escapeHtml(p.answer)}
+                            </div>
+                        </div>
+                    `).join('')}
+                    <div class="no-print" style="margin-top: 2rem; text-align: center;">
+                        <button onclick="window.print()">🖨️ Print This Page</button>
+                    </div>
+                </body>
+                </html>
+            `);
+            printWindow.document.close();
+        }
+        
+        function escapeHtml(str) {
+            return str.replace(/[&<>]/g, function(m) {
+                if (m === '&') return '&amp;';
+                if (m === '<') return '&lt;';
+                if (m === '>') return '&gt;';
+                return m;
+            }).replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, function(c) {
+                return c;
+            });
+        }
+        
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+            const btn = document.querySelector('.theme-toggle');
+            if (document.body.classList.contains('dark-mode')) {
+                btn.innerHTML = '☀️ Light Mode';
+            } else {
+                btn.innerHTML = '🌙 Dark Mode';
+            }
+        }
+        
+        renderQuiz();
+        renderFormulaBank();
+        renderProblemBank();
+        document.getElementById('submitQuizBtn').addEventListener('click', submitQuiz);
+    </script>
+</body>
+</html>

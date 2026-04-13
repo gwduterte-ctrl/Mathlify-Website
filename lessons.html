@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <title>Mathlify_Lessons</title>
+</head>
+<body>
+    <header>
+        <h1>Mathli<span>.</span>fy</h1>
+        <div class="nav-links">
+            <a href="homepage.html">Homepage</a>
+            <a href="lessons.html">Lessons</a>
+            <a href="quiz.html">Quizzes</a>
+            <a href="about.html">About</a>
+            <a href="contacts.html">Contacts</a>
+        </div>
+    </header>
+
+    <div class="dashboard-container">
+        <div class="main-content">
+            <div class="section-title">📚 Probability & Statistics Lessons</div>
+            
+            <div class="lessons-grid">
+                <div class="lesson-card">
+                    <div class="lesson-header">
+                        <span class="lesson-title">✖️ Product Rule</span>
+                        <span class="badge">Fundamental Counting</span>
+                    </div>
+                    <div class="lesson-body">
+                        <img src="https://images.unsplash.com/photo-1639322537228-f710d846310a?w=400" alt="Product Rule" class="lesson-image">
+                        <div class="lesson-desc"><strong>Definition:</strong> If an experiment has n₁ outcomes for first stage and n₂ for second, total = n₁ × n₂.</div>
+                        <div class="lesson-desc"><strong>Detailed Explanation:</strong> The product rule states that if you have multiple independent choices, the total number of combinations is the product of individual choices. For example, choosing a shirt (3 options) and pants (4 options) gives 12 outfits.</div>
+                        <div class="lesson-desc"><strong>IT Application:</strong> In computer networks, if you have 2^10 possible IP addresses for 10 bits, that's 1024 addresses. In password creation, if each character has 26 options and you need 8 characters, that's 26^8 possibilities.</div>
+                        <div class="btn-group">
+                            <button class="btn btn-primary" onclick="showDetailedModal('product')">View Full Lesson</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="lesson-card">
+                    <div class="lesson-header">
+                        <span class="lesson-title">🔄 Complementary Counting</span>
+                        <span class="badge">Indirect Counting</span>
+                    </div>
+                    <div class="lesson-body">
+                        <img src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=400" alt="Complementary" class="lesson-image">
+                        <div class="lesson-desc"><strong>Definition:</strong> Number of desired outcomes = Total outcomes − Outcomes we don't want.</div>
+                        <div class="lesson-desc"><strong>Detailed Explanation:</strong> Sometimes it's easier to count what you don't want and subtract. For "at least one" problems, count total possibilities minus "none" possibilities.</div>
+                        <div class="lesson-desc"><strong>IT Application:</strong> In cybersecurity, finding probability of at least one password breach in a system. If there are 10^10 possible PINs and 10! have no repeats, those with repeats = 10^10 - 10!.</div>
+                        <div class="btn-group">
+                            <button class="btn btn-primary" onclick="showDetailedModal('complement')">View Full Lesson</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="lesson-card">
+                    <div class="lesson-header">
+                        <span class="lesson-title">🔁 Permutations (nPk)</span>
+                        <span class="badge">Order Matters</span>
+                    </div>
+                    <div class="lesson-body">
+                        <img src="https://images.unsplash.com/photo-1509228468518-180dd4864904?w=400" alt="Permutations" class="lesson-image">
+                        <div class="lesson-desc"><strong>Formula:</strong> P(n,k) = n! / (n−k)!</div>
+                        <div class="lesson-desc"><strong>Detailed Explanation:</strong> Permutations count arrangements where order matters. For example, choosing a president, VP, and secretary from 7 people: 7×6×5 = 210 ways.</div>
+                        <div class="lesson-desc"><strong>IT Application:</strong> Scheduling algorithms, ranking search results, password arrangements, and task sequencing in operating systems.</div>
+                        <div class="btn-group">
+                            <button class="btn btn-primary" onclick="showDetailedModal('permutation')">View Full Lesson</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="lesson-card">
+                    <div class="lesson-header">
+                        <span class="lesson-title">🎲 Combinations (nCk)</span>
+                        <span class="badge">Order Doesn't Matter</span>
+                    </div>
+                    <div class="lesson-body">
+                        <img src="https://images.unsplash.com/photo-1610563166150-b34df4f3bcd6?w=400" alt="Combinations" class="lesson-image">
+                        <div class="lesson-desc"><strong>Formula:</strong> C(n,k) = n! / (k!(n−k)!)</div>
+                        <div class="lesson-desc"><strong>Detailed Explanation:</strong> Combinations count selections where order doesn't matter. Choosing 2 servers from 5 for maintenance: C(5,2) = 10 ways.</div>
+                        <div class="lesson-desc"><strong>IT Application:</strong> Team formation, selecting data samples, error detection codes, and subset selection in databases.</div>
+                        <div class="btn-group">
+                            <button class="btn btn-primary" onclick="showDetailedModal('combination')">View Full Lesson</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="lesson-card">
+                    <div class="lesson-header">
+                        <span class="lesson-title">📖 Binomial Theorem</span>
+                        <span class="badge">Expansion</span>
+                    </div>
+                    <div class="lesson-body">
+                        <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=400" alt="Binomial" class="lesson-image">
+                        <div class="lesson-desc"><strong>Formula:</strong> (x+y)ⁿ = Σ C(n,k) xⁿ⁻ᵏ yᵏ</div>
+                        <div class="lesson-desc"><strong>Detailed Explanation:</strong> Expands binomials raised to powers. Each term uses combinations as coefficients. (a+b)² = a² + 2ab + b².</div>
+                        <div class="lesson-desc"><strong>IT Application:</strong> Probability distributions, error correction codes, data compression algorithms, and network packet transmission analysis.</div>
+                        <div class="btn-group">
+                            <button class="btn btn-primary" onclick="showDetailedModal('binomial')">View Full Lesson</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <aside class="sidebar">
+            <div class="reminder-card">
+                <div style="font-weight: 700;">📌 Lesson Resources</div>
+                <div class="reminder-item">📄 Product Rule Worksheet</div>
+                <div class="reminder-item">📄 Permutation Practice Set</div>
+                <div class="reminder-item">📄 Combination Examples</div>
+                <div class="reminder-item">📄 Binomial Theorem Problems</div>
+            </div>
+            <div class="teacher-info">
+                <div style="font-weight: 600;">👩‍🏫 Instructor</div>
+                <div>Ms. Karen Comprado</div>
+                <div class="file-stats">Office Hours: Saturday 3-5 PM</div>
+            </div>
+        </aside>
+    </div>
+    
+    <footer>
+        <p>© Mathlify — Comprehensive Probability Lessons for IT</p>
+    </footer>
+
+    <button class="theme-toggle" onclick="toggleTheme()">🌙 Dark Mode</button>
+
+    <div id="lessonModal" class="modal-overlay">
+        <div class="modal-content" style="max-width: 600px;">
+            <div class="modal-header">
+                <h3 id="modalTitle">Lesson Details</h3>
+                <p id="modalSubtitle">Probability & Statistics Concept</p>
+            </div>
+            <div class="modal-body" id="modalBody" style="max-height: 60vh; overflow-y: auto;">
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn modal-btn-primary" onclick="closeModal()">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showDetailedModal(type) {
+            const modal = document.getElementById('lessonModal');
+            const title = document.getElementById('modalTitle');
+            const body = document.getElementById('modalBody');
+            
+            const lessons = {
+                product: {
+                    title: '✖️ Product Rule - Full Lesson',
+                    content: `
+                        <h4>Definition</h4>
+                        <p>The Product Rule states that if a process can be broken into stages, and the first stage has n₁ outcomes, the second has n₂ outcomes, and so on, then the total number of outcomes is n₁ × n₂ × n₃ × ... × nₖ.</p>
+                        <h4>Formula</h4>
+                        <div class="formula-box">|A × B| = |A| · |B|</div>
+                        <h4>Examples</h4>
+                        <p><strong>Example 1:</strong> 3 shirts × 4 pants = 12 outfits</p>
+                        <p><strong>Example 2:</strong> 26 letters × 26 letters × 26 letters = 17,576 three-letter codes</p>
+                        <h4>IT Applications</h4>
+                        <ul>
+                            <li>IP address configurations: 2^32 possible IPv4 addresses</li>
+                            <li>Password strength: 26^8 possible 8-character lowercase passwords</li>
+                            <li>Memory addressing: 2^n possible memory locations for n bits</li>
+                        </ul>
+                        <h4>Practice Problem</h4>
+                        <p>A network has 4 switches, each with 3 ports. How many total port connections? <strong>Answer: 4 × 3 = 12</strong></p>
+                    `
+                },
+                complement: {
+                    title: '🔄 Complementary Counting - Full Lesson',
+                    content: `
+                        <h4>Definition</h4>
+                        <p>Complementary counting finds the number of desired outcomes by subtracting the number of undesired outcomes from the total outcomes.</p>
+                        <h4>Formula</h4>
+                        <div class="formula-box">|A| = |U| − |Aᶜ|</div>
+                        <h4>Examples</h4>
+                        <p><strong>Example:</strong> 10-digit PIN with at least one repeat = 10^10 − 10! = 10,000,000,000 − 3,628,800 = 9,996,371,200</p>
+                        <h4>IT Applications</h4>
+                        <ul>
+                            <li>Password security: Probability of at least one breach</li>
+                            <li>Network reliability: At least one server failure</li>
+                            <li>Data integrity: At least one error in transmission</li>
+                        </ul>
+                        <h4>Practice Problem</h4>
+                        <p>In a system with 1000 possible passwords, 50 are weak. How many are strong? <strong>Answer: 1000 - 50 = 950</strong></p>
+                    `
+                },
+                permutation: {
+                    title: '🔁 Permutations - Full Lesson',
+                    content: `
+                        <h4>Definition</h4>
+                        <p>Permutations count the number of ways to arrange k items from a set of n distinct items where order matters.</p>
+                        <h4>Formula</h4>
+                        <div class="formula-box">P(n,k) = n! / (n−k)!</div>
+                        <h4>Examples</h4>
+                        <p><strong>Example 1:</strong> P(7,3) = 7×6×5 = 210 ways to choose president, VP, secretary</p>
+                        <p><strong>Example 2:</strong> P(10,4) = 10×9×8×7 = 5,040 ways to arrange 4 books on a shelf</p>
+                        <h4>IT Applications</h4>
+                        <ul>
+                            <li>Scheduling algorithms for CPU processes</li>
+                            <li>Ranking search engine results</li>
+                            <li>Password arrangements for security</li>
+                        </ul>
+                        <h4>Practice Problem</h4>
+                        <p>How many ways to assign 3 different tasks to 5 employees? <strong>Answer: P(5,3) = 60</strong></p>
+                    `
+                },
+                combination: {
+                    title: '🎲 Combinations - Full Lesson',
+                    content: `
+                        <h4>Definition</h4>
+                        <p>Combinations count the number of ways to select k items from a set of n distinct items where order does NOT matter.</p>
+                        <h4>Formula</h4>
+                        <div class="formula-box">C(n,k) = n! / (k!(n−k)!)</div>
+                        <h4>Examples</h4>
+                        <p><strong>Example 1:</strong> C(5,2) = 10 ways to choose 2 servers from 5</p>
+                        <p><strong>Example 2:</strong> C(52,5) = 2,598,960 possible poker hands</p>
+                        <h4>IT Applications</h4>
+                        <ul>
+                            <li>Selecting data samples for testing</li>
+                            <li>Team formation in project management</li>
+                            <li>Error detection code selection</li>
+                        </ul>
+                        <h4>Practice Problem</h4>
+                        <p>Choose 3 programmers from a team of 8. How many teams? <strong>Answer: C(8,3) = 56</strong></p>
+                    `
+                },
+                binomial: {
+                    title: '📖 Binomial Theorem - Full Lesson',
+                    content: `
+                        <h4>Definition</h4>
+                        <p>The Binomial Theorem expands expressions of the form (x + y)ⁿ into a sum involving binomial coefficients.</p>
+                        <h4>Formula</h4>
+                        <div class="formula-box">(x + y)ⁿ = Σ C(n,k) xⁿ⁻ᵏ yᵏ (k=0 to n)</div>
+                        <h4>Examples</h4>
+                        <p><strong>Example 1:</strong> (a+b)² = a² + 2ab + b²</p>
+                        <p><strong>Example 2:</strong> (x+1)³ = x³ + 3x² + 3x + 1</p>
+                        <h4>IT Applications</h4>
+                        <ul>
+                            <li>Binomial probability distributions in data science</li>
+                            <li>Error correction codes in networking</li>
+                            <li>Packet transmission success probability</li>
+                        </ul>
+                        <h4>Practice Problem</h4>
+                        <p>Expand (2x + 3)²: <strong>Answer: 4x² + 12x + 9</strong></p>
+                    `
+                }
+            };
+            
+            const lesson = lessons[type];
+            if (lesson) {
+                title.textContent = lesson.title;
+                body.innerHTML = lesson.content;
+                modal.classList.add('active');
+            }
+        }
+        
+        function closeModal() {
+            const modal = document.getElementById('lessonModal');
+            modal.classList.remove('active');
+        }
+        
+        document.getElementById('lessonModal').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+        
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+            const btn = document.querySelector('.theme-toggle');
+            if (document.body.classList.contains('dark-mode')) {
+                btn.innerHTML = '☀️ Light Mode';
+            } else {
+                btn.innerHTML = '🌙 Dark Mode';
+            }
+        }
+    </script>
+</body>
+</html>

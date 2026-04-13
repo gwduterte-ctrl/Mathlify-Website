@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <title>Mathlify_Contacts</title>
+</head>
+<body>
+    <header>
+        <h1>Mathli<span>.</span>fy</h1>
+        <div class="nav-links">
+            <a href="homepage.html">Homepage</a>
+            <a href="lessons.html">Lessons</a>
+            <a href="quiz.html">Quizzes</a>
+            <a href="about.html">About</a>
+            <a href="contacts.html">Contacts</a>
+        </div>
+    </header>
+
+    <div class="dashboard-container">
+        <div class="main-content">
+            <div class="section-title">Contact Us</div>
+            <div class="contact-form">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" id="contactName" placeholder="Your name">
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="contactEmail" placeholder="your@email.com">
+                </div>
+                <div class="form-group">
+                    <label>Message</label>
+                    <textarea id="contactMessage" rows="4" placeholder="Questions about probability lessons?"></textarea>
+                </div>
+                <button class="btn btn-primary" onclick="showContactModal()">Send Message</button>
+                <p style="margin-top: 1rem; color: #6c7c9e;">📧 support@mathlify.com<br>📞 (555) 123-4567</p>
+            </div>
+        </div>
+        
+        <aside class="sidebar">
+            <div class="reminder-card">
+                <div style="font-weight: 700;">📞 Support Hours</div>
+                <div class="reminder-item">Mon-Fri: 9AM - 6PM EST</div>
+                <div class="reminder-item">Sat: 10AM - 2PM EST</div>
+                <div class="reminder-item">Response within 24 hours</div>
+            </div>
+        </aside>
+    </div>
+    
+    <footer>
+        <p>© Mathlify — We'd Love to Hear From You</p>
+    </footer>
+
+    <!-- Modal Popup -->
+    <div id="contactModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>📧 Message Sent!</h3>
+                <p>Thank you for reaching out</p>
+            </div>
+            <div class="modal-body" id="contactModalBody">
+                <p>We've received your message and will respond within 24 hours.</p>
+                <p style="margin-top: 0.5rem;">📬 Support Team</p>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn modal-btn-primary" onclick="closeContactModal()">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showContactModal() {
+            const name = document.getElementById('contactName').value;
+            const email = document.getElementById('contactEmail').value;
+            const message = document.getElementById('contactMessage').value;
+            
+            if (!name || !email || !message) {
+                alert('Please fill in all fields before sending.');
+                return;
+            }
+            
+            const modal = document.getElementById('contactModal');
+            const body = document.getElementById('contactModalBody');
+            body.innerHTML = `
+                <p>Thank you <strong>${name}</strong>! We've received your message.</p>
+                <p>We'll respond to <strong>${email}</strong> within 24 hours.</p>
+                <div class="formula-box" style="margin-top: 1rem;">
+                    "${message.substring(0, 100)}${message.length > 100 ? '...' : ''}"
+                </div>
+            `;
+            modal.classList.add('active');
+            
+            // Clear form
+            document.getElementById('contactName').value = '';
+            document.getElementById('contactEmail').value = '';
+            document.getElementById('contactMessage').value = '';
+        }
+        
+        function closeContactModal() {
+            const modal = document.getElementById('contactModal');
+            modal.classList.remove('active');
+        }
+        
+        document.getElementById('contactModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeContactModal();
+            }
+        });
+    </script>
+</body>
+</html>

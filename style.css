@@ -1,0 +1,585 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Times New Roman', serif;
+    background: #f3f6fc;
+    color: #1e2a3e;
+}
+
+/* modern header with glassmorphism effect */
+header {
+    background: linear-gradient(135deg, #ffffff 0%, #f8faff 100%);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.03), 0 2px 4px rgba(0, 0, 0, 0.05);
+    padding: 1rem 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    border-bottom: 1px solid #e2edf7;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(2px);
+}
+
+h1 {
+    font-size: 1.9rem;
+    font-weight: 700;
+    background: linear-gradient(120deg, #3b2b8c, #6c4fd7);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    letter-spacing: -0.3px;
+}
+
+h1 span {
+    background: none;
+    color: #ff8c42;
+    background-clip: unset;
+    -webkit-background-clip: unset;
+}
+
+.nav-links {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.nav-links a {
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 1.2rem;
+    border-radius: 40px;
+    background: transparent;
+    color: #2c3e66;
+    transition: all 0.2s ease;
+    font-size: 0.95rem;
+}
+
+.nav-links a:hover {
+    background: #e9eff5;
+    color: #4b2fbd;
+}
+
+/* dashboard style layout (two columns) */
+.dashboard-container {
+    max-width: 1400px;
+    margin: 2rem auto;
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 2rem;
+}
+
+/* main content area (lessons + interactive) */
+.main-content {
+    background: white;
+    border-radius: 28px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
+    padding: 1.8rem 2rem;
+    transition: all 0.2s;
+}
+
+.section-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #1e2a47;
+    border-left: 5px solid #6c4fd7;
+    padding-left: 1rem;
+}
+
+.welcome-card {
+    background: linear-gradient(110deg, #f1f5fe, #ffffff);
+    border-radius: 24px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    border: 1px solid #e4edfa;
+}
+
+.welcome-card h2 {
+    font-size: 1.6rem;
+    margin-bottom: 0.5rem;
+}
+
+.lessons-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+}
+
+.lesson-card {
+    background: #ffffff;
+    border-radius: 20px;
+    border: 1px solid #e9f0f5;
+    transition: 0.2s;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+}
+
+.lesson-header {
+    background: #fafcff;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid #eef3fc;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.lesson-title {
+    font-weight: 700;
+    font-size: 1.3rem;
+    color: #1f2b48;
+}
+
+.badge {
+    background: #eef2ff;
+    color: #3c2f8c;
+    padding: 0.2rem 0.8rem;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.lesson-body {
+    padding: 1.2rem 1.5rem;
+    background: #ffffff;
+}
+
+.lesson-desc {
+    color: #3a4b6e;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+}
+
+.btn-group {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+}
+
+.btn {
+    border: none;
+    background: #f0f3fa;
+    padding: 0.45rem 1.2rem;
+    border-radius: 60px;
+    font-weight: 500;
+    cursor: pointer;
+    font-family: inherit;
+    transition: 0.2s;
+    color: #2c3e66;
+    font-size: 0.85rem;
+}
+
+.btn-primary {
+    background: #6c4fd7;
+    color: white;
+    box-shadow: 0 2px 6px rgba(108, 79, 215, 0.2);
+}
+
+.btn-primary:hover {
+    background: #573fbc;
+    transform: translateY(-1px);
+}
+
+.btn-outline {
+    border: 1px solid #cddae9;
+    background: white;
+}
+
+.btn-outline:hover {
+    background: #f0f4fe;
+}
+
+.quiz-area {
+    background: #fefaf5;
+    border-radius: 20px;
+    padding: 1.5rem;
+    margin-top: 2rem;
+    border: 1px solid #ffe6cf;
+}
+
+.quiz-question {
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+}
+
+.quiz-options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin: 1rem 0;
+}
+
+.quiz-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #ffffff;
+    padding: 0.5rem 1rem;
+    border-radius: 40px;
+    border: 1px solid #e2e8f0;
+    cursor: pointer;
+}
+
+.quiz-option input {
+    accent-color: #6c4fd7;
+}
+
+.quiz-feedback {
+    font-size: 0.9rem;
+    margin-top: 0.75rem;
+    padding: 0.5rem;
+    border-radius: 12px;
+}
+
+.correct-feedback {
+    background: #e0f2e9;
+    color: #1f6e43;
+}
+
+.wrong-feedback {
+    background: #ffe6e5;
+    color: #b13e3e;
+}
+
+/* right sidebar */
+.sidebar {
+    background: white;
+    border-radius: 28px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
+    padding: 1.5rem;
+}
+
+.reminder-card {
+    background: #fff9e8;
+    border-radius: 20px;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.reminder-item {
+    padding: 0.6rem 0;
+    border-bottom: 1px solid #f0e5d2;
+    font-size: 0.9rem;
+}
+
+.teacher-info {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 2px dashed #e2edf7;
+}
+
+.file-stats {
+    font-size: 0.8rem;
+    color: #5f6f90;
+}
+
+footer {
+    text-align: center;
+    padding: 2rem;
+    color: #6c7c9e;
+    font-size: 0.8rem;
+    border-top: 1px solid #e2edf7;
+    margin-top: 2rem;
+}
+
+/* responsive */
+@media (max-width: 800px) {
+    .dashboard-container {
+        grid-template-columns: 1fr;
+        padding: 0 1rem;
+    }
+    header {
+        flex-direction: column;
+        gap: 12px;
+        align-items: center;
+    }
+    .nav-links {
+        justify-content: center;
+    }
+}
+
+/* homepage specific */
+.hero-section {
+    text-align: center;
+    padding: 3rem 1rem;
+    background: linear-gradient(135deg, #f5f0ff, #ffffff);
+    border-radius: 32px;
+    margin-bottom: 2rem;
+}
+
+.hero-section h2 {
+    font-size: 2.5rem;
+    color: #2d1b69;
+    margin-bottom: 1rem;
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.feature-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    border: 1px solid #eef2ff;
+}
+
+/* about page */
+.about-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* contacts page */
+.contact-form {
+    background: white;
+    padding: 2rem;
+    border-radius: 24px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.form-group {
+    margin-bottom: 1.2rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.4rem;
+    font-weight: 500;
+}
+
+.form-group input, .form-group textarea {
+    width: 100%;
+    padding: 0.7rem;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    font-family: inherit;
+}
+
+/* Modal/Popup Styles for better UX */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    background: white;
+    border-radius: 28px;
+    max-width: 500px;
+    width: 90%;
+    padding: 0;
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.modal-overlay.active .modal-content {
+    transform: scale(1);
+}
+
+.modal-header {
+    background: linear-gradient(135deg, #6c4fd7, #8b6fe8);
+    padding: 1.5rem;
+    border-radius: 28px 28px 0 0;
+    color: white;
+}
+
+.modal-header h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.25rem;
+}
+
+.modal-header p {
+    opacity: 0.9;
+    font-size: 0.85rem;
+}
+
+.modal-body {
+    padding: 1.5rem;
+    color: #1e2a3e;
+    line-height: 1.6;
+}
+
+.modal-body strong {
+    color: #6c4fd7;
+}
+
+.modal-footer {
+    padding: 1rem 1.5rem 1.5rem;
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+}
+
+.modal-btn {
+    padding: 0.6rem 1.5rem;
+    border-radius: 40px;
+    border: none;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.modal-btn-primary {
+    background: #6c4fd7;
+    color: white;
+}
+
+.modal-btn-primary:hover {
+    background: #573fbc;
+    transform: translateY(-1px);
+}
+
+.modal-btn-secondary {
+    background: #eef2ff;
+    color: #4a627a;
+}
+
+.modal-btn-secondary:hover {
+    background: #e2e8f0;
+}
+
+.formula-icon {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.formula-box {
+    background: #f8f9ff;
+    padding: 1rem;
+    border-radius: 16px;
+    font-family: 'Courier New', monospace;
+    text-align: center;
+    margin: 1rem 0;
+    border-left: 4px solid #6c4fd7;
+}
+
+/* Additional styles for enhanced features */
+.lesson-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 16px;
+    margin-bottom: 1rem;
+}
+
+.stats-banner {
+    background: linear-gradient(135deg, #6c4fd7, #8b6fe8);
+    color: white;
+    padding: 2rem;
+    border-radius: 24px;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+.theme-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #6c4fd7;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 0.75rem 1.25rem;
+    cursor: pointer;
+    z-index: 999;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.dark-mode {
+    background: #1a1a2e;
+    color: #eee;
+}
+
+.dark-mode .main-content,
+.dark-mode .sidebar,
+.dark-mode .lesson-card,
+.dark-mode .feature-card,
+.dark-mode .contact-form {
+    background: #16213e;
+    color: #eee;
+    border-color: #0f3460;
+}
+
+.formula-bank {
+    background: white;
+    border-radius: 20px;
+    padding: 1.5rem;
+    margin-top: 2rem;
+}
+
+.formula-item {
+    background: #f8f9ff;
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 12px;
+    border-left: 4px solid #6c4fd7;
+}
+
+.problem-item {
+    background: #fff9e8;
+    padding: 1rem;
+    margin: 0.5rem 0;
+    border-radius: 12px;
+}
+
+.timer-display {
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    background: #6c4fd7;
+    color: white;
+    padding: 0.5rem;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+}
+
+.print-btn {
+    background: #4a627a;
+    color: white;
+    margin-left: 0.5rem;
+}
+
+.quiz-theme-selector {
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    border-radius: 12px;
+}
